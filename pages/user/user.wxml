@@ -1,0 +1,22 @@
+<!--pages/user/user.wxml-->
+<cu-custom bgColor="bg-gradual-blue">
+  <view slot="content">关于我</view>
+</cu-custom>
+<view class="UCenter-bg justify-center padding" style="background-image:url(/images/user_index.jpg)">
+    <view class="cu-avatar xl round" 
+        style="background-image:url(/images/logo.png);"
+        bindtap="toLogin"></view>
+    <view class="flex solid-bottom padding justify-center">
+      <view class="bg-green padding-sm margin-xs radius">姓名</view>
+      <view class="bg-green padding-sm margin-xs radius">{{userData == ''?'未知':userData.name}}</view>
+    </view>
+    <image src="/images/wave.gif" mode="scaleToFill" class="gif-wave"></image>
+</view>
+<view class="bg-white padding" wx:if="{{show}}">
+    <view class="flex flex-wrap justify-around">
+        <button class="cu-btn bg-{{item.color}} animation-{{animation==item.name+'s'?item.name:''}} animation-reverse margin-sm basis-sm shadow" bindtap="{{item.bindtap}}" data-class="{{item.name+'s'}}" wx:for="{{list}}" wx:key="{{index}}">
+            {{item.title}}
+        </button>
+    </view>
+            
+</view>

@@ -1,0 +1,18 @@
+<!--pages/message/message.wxml-->
+<cu-custom bgColor="bg-gradual-blue">
+  <view slot="content">消息</view>
+</cu-custom>
+<view class="cu-bar bg-white solid-bottom">
+  <view class="action">
+    <text class="cuIcon-title text-orange"></text>
+    审批状态
+  </view>
+</view>
+<view class="bg-white padding margin-top-xs">
+  <view class="cu-steps steps-arrow">
+    <view class="cu-item {{index<step?'text-green':(index>step?'':(status<0?'text-red':(status>0?'text-green':'text-yellow')))}}" wx:for="{{stepList}}" wx:key>
+      <text class="cuIcon-{{index<step?iconList[2]:(index>step?'title':(status<0?iconList[0]:(status>0?iconList[2]:iconList[1])))}}"></text>
+      {{item}}
+    </view>
+  </view>
+</view>

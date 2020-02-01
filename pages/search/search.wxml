@@ -1,0 +1,18 @@
+<!--pages/search/search.wxml-->
+<cu-custom bgColor="bg-gradual-blue">
+    <view slot="content">搜索</view>
+</cu-custom>
+<view class='nav-list'>
+    <navigator 
+        open-type="navigate" 
+        hover-class='none' 
+        url="/pages/search/{{item.name}}/{{item.name}}"
+        class="nav-li bg-{{item.color}}"
+        wx:for="{{elements}}" wx:key>
+        <view>
+            <view class="nav-title">{{item.title}}</view>
+            <view class="nav-name">{{item.name}}</view>
+            <text class='cuIcon-{{item.icon}}'></text>
+        </view>
+    </navigator>
+</view>

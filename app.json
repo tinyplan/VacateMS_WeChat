@@ -1,0 +1,61 @@
+{
+    "pages": [
+        "pages/home/home",
+        "pages/search/search",
+        "pages/search/term/term",
+        "pages/vacate/info/info",
+        "pages/vacate/audit/audit",
+        "pages/vacateForm/vacateForm",
+        "pages/login/login",
+        "pages/index/index",
+        "pages/message/message",
+        "pages/user/user",
+        "pages/vacate/pass/pass",
+        "pages/vacate/reject/reject",
+        "pages/vacate/trash/trash",
+        "pages/search/period/period",
+        "pages/search/type/type",
+        "pages/changePwd/changePwd"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "ColorUI",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+    },
+    "tabBar": {
+        "color": "#000000",
+        "selectedColor": "#1296db",
+        "list": [
+            {
+                "pagePath": "pages/home/home",
+                "text": "首页",
+                "iconPath": "icons/home1.png",
+                "selectedIconPath": "icons/home.png"
+            },
+            {
+                "pagePath": "pages/search/search",
+                "text": "搜索",
+                "iconPath": "icons/search1.png",
+                "selectedIconPath": "icons/search.png"
+            },
+            {
+                "pagePath": "pages/vacateForm/vacateForm",
+                "text": "请假申请",
+                "iconPath": "icons/form1.png",
+                "selectedIconPath": "icons/form.png"
+            },
+            {
+                "pagePath": "pages/user/user",
+                "text": "我",
+                "iconPath": "icons/user1.png",
+                "selectedIconPath": "icons/user.png"
+            }
+        ]
+    },
+    "usingComponents": {
+        "cu-custom": "/colorui/components/cu-custom"
+    },
+    "sitemapLocation": "sitemap.json"
+}

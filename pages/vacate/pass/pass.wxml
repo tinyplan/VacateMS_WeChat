@@ -1,0 +1,41 @@
+<!--pages/vacate/pass/pass.wxml-->
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+    <view slot="backText">返回</view>
+    <view slot="content">审核通过</view>
+</cu-custom>
+<view class="cu-list menu sm-border card-menu margin-top bg-blue light"  
+    wx:for="{{vacateList}}" wx:key>
+    <view class="cu-item border-bottom">
+        <view class="content text-center">
+            <text class="cuIcon-comment text-blue"></text>
+            <text class="text-black text-bold text-xl">{{item.vacate.type}}</text>
+        </view>
+    </view>
+    <view class="cu-item border-bottom">
+        <view class="content">
+            <text class="cuIcon-profile text-blue"></text>
+            <text class="text-black text-bold text-lg">请假人:</text>
+            <text class="text-black text-lg">{{item.name}}</text>
+        </view>
+    </view>
+    <view class="cu-item border-bottom">
+        <view class="content">
+            <text class="cuIcon-time text-blue"></text>
+            <text class="text-black text-bold text-lg">请假时间:</text>
+            <text class="text-black text-lg">{{item.vacate.start_time+' ~ '+item.vacate.end_time}}</text>
+        </view>
+    </view>
+    <view class="cu-item border-bottom">
+        <view class="content">
+            <text class="cuIcon-edit text-blue"></text>
+            <text class="text-black text-bold text-lg">提交时间:</text>
+            <text class="text-black text-lg">{{item.vacate.submit_time}}</text>
+        </view>
+    </view>
+    <view class="cu-item">
+        <view class="action"></view>
+        <view class="action">
+            <button class="cu-btn bg-gray lg shadow padding-sm margin-xs radius" bindtap="moreInfo" data-index="{{index}}">更多</button>
+        </view>
+    </view>
+</view>

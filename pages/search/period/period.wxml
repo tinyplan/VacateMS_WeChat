@@ -1,0 +1,67 @@
+<!--pages/search/period/period.wxml-->
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+    <view slot="backText">返回</view>
+    <view slot="content">时间段查询</view>
+</cu-custom>
+<form bindsubmit="formSubmit">
+    <view class="cu-form-group margin-top">
+        <view class="title">开始时间</view>
+        <picker mode="date" value="{{startDate}}" start="{{currentDate}}" end="2020-09-01" bindchange="startDateChange">
+            <view class="picker">
+                {{startDate == ''?'请输入开始时间':startDate}}
+            </view>
+        </picker>
+        <text class="cuIcon-calendar text-orange"></text>
+    </view>
+    <view class="cu-form-group">
+        <view class="title">结束时间</view>
+        <picker mode="date" value="{{endDate}}" start="{{startDate}}" end="2020-09-01" bindchange="endDateChange">
+            <view class="picker">
+                {{endDate == ''?'请输入结束时间':endDate}}
+            </view>
+        </picker>
+        <text class="cuIcon-calendar text-orange"></text>
+    </view>
+    <view class="margin-top bg-gray">
+        <button class="cu-btn bg-blue round shadow margin-tb-sm block" form-type="submit">
+            查询
+        </button>
+    </view>
+</form>
+<view class="cu-list menu sm-border card-menu margin-top bg-blue light"  
+    wx:for="{{vacateList}}" wx:key>
+    <view class="cu-item border-bottom">
+        <view class="content text-center">
+            <text class="cuIcon-comment text-blue"></text>
+            <text class="text-black text-bold text-xl">{{item.vacate.type}}</text>
+        </view>
+    </view>
+    <view class="cu-item border-bottom">
+        <view class="content">
+            <text class="cuIcon-profile text-blue"></text>
+            <text class="text-black text-bold text-lg">请假人:</text>
+            <text class="text-black text-lg">{{item.name}}</text>
+        </view>
+    </view>
+    <view class="cu-item border-bottom">
+        <view class="content">
+            <text class="cuIcon-time text-blue"></text>
+            <text class="text-black text-bold text-lg">请假时间:</text>
+            <text class="text-black text-lg">{{item.vacate.start_time+' ~ '+item.vacate.end_time}}</text>
+        </view>
+    </view>
+    <view class="cu-item border-bottom">
+        <view class="content">
+            <text class="cuIcon-edit text-blue"></text>
+            <text class="text-black text-bold text-lg">提交时间:</text>
+            <text class="text-black text-lg">{{item.vacate.submit_time}}</text>
+        </view>
+    </view>
+    <view class="cu-item">
+        <view class="action"></view>
+        <view class="action">
+            <button class="cu-btn bg-gray lg shadow padding-sm margin-xs radius" 
+                bindtap="moreInfo" data-index="{{index}}">更多</button>
+        </view>
+    </view>
+</view>

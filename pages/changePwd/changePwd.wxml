@@ -1,0 +1,37 @@
+<!--pages/changePwd/changePwd.wxml-->
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+    <!-- 此处暂时只能点击文字退出 -->
+    <view slot="backText" bindtap="jump2User">返回</view>
+    <view slot="content">登录</view>
+</cu-custom>
+<form bindsubmit="formsubmit" bindreset="formreset">
+    <view class="cu-form-group">
+        <view class="title">新密码</view>
+        <input placeholder="新密码" type = "password" name="newPwd"></input>
+    </view>
+    <view class="cu-form-group">
+        <view class="title">确认密码</view>
+        <input placeholder="重新输入新密码" type="password" name="rePwd"></input>
+    </view>
+    <view class="cu-form-group flex solid-bottom padding justify-center">
+        <button class="cu-btn bg-gray lg shadow padding-sm margin-xs radius" form-type="reset">
+            重置
+        </button>
+        <button class="cu-btn bg-blue lg shadow padding-sm margin-xs radius" form-type="submit">
+            确认修改
+        </button>
+    </view>
+</form>
+<view class="cu-modal {{isHide?'':'show'}}">
+    <view class="cu-dialog">
+        <view class="cu-bar bg-white justify-end">
+            <view class="content">{{title}}</view>
+            <view class="action" bindtap="hideModal">
+                <text class="cuIcon-close text-red"></text>
+            </view>
+        </view>
+        <view class="padding-xl">
+            {{message}}
+        </view>
+    </view>
+</view>

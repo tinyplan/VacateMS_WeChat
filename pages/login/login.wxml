@@ -1,0 +1,55 @@
+<!--pages/login/login.wxml-->
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+    <!-- 此处暂时只能点击文字退出 -->
+    <view slot="backText" bindtap="jump2Home">返回</view>
+    <view slot="content">登录</view>
+</cu-custom>
+<form bindsubmit="formsubmit" bindreset="formreset">
+    <view class="cu-form-group">
+        <view class="title">用户名</view>
+        <input placeholder="用户名为ID" name="userId"></input>
+    </view>
+    <view class="cu-form-group">
+        <view class="title">密码</view>
+        <input placeholder="请输入密码" type="password" name="password"></input>
+    </view>
+    <view class="cu-form-group">
+        <view class="title">用户身份</view>
+        <picker bindchange="PickerChange" value="{{index}}" range="{{picker}}">
+            <view class="picker">
+                {{index?picker[index]:'请选择身份'}}
+            </view>
+        </picker>
+    </view>
+    <view class="cu-form-group flex solid-bottom padding justify-center">
+        <button class="cu-btn bg-gray lg shadow padding-sm margin-xs radius" form-type="reset">
+            重置
+        </button>
+        <button class="cu-btn bg-blue lg shadow padding-sm margin-xs radius" form-type="submit">
+            登录
+        </button>
+    </view>
+    <!-- 模态弹窗 -->
+    <view class="cu-modal {{isHide?'':'show'}}">
+        <view class="cu-dialog">
+            <view class="cu-bar bg-white justify-end">
+                <view class="content">{{title}}</view>
+                <view class="action" bindtap="hideModal">
+                    <text class="cuIcon-close text-red"></text>
+                </view>
+            </view>
+            <view class="padding-xl">
+                {{message}}
+            </view>
+            <!-- 登录成功显示 -->
+            <view class="cu-bar bg-white" wx:if="{{isJump}}">
+                <view class="action margin-0 flex-sub solid-left" bindtap="jump2Home">
+                    取消
+                </view>
+                <view class="action margin-0 flex-sub text-green solid-left" bindtap="jump2Home">
+                    确定
+                </view>
+            </view>
+        </view>
+    </view>
+</form>

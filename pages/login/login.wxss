@@ -1,0 +1,11 @@
+/* pages/login/login.wxss */
+.cu-form-group .title {
+  min-width: calc(4em + 30rpx);
+}
+
+@import "../../colorui/animation.wxss";
+
+image[class*="gif-"] {
+  border-radius: 6rpx;
+  display: block;
+}

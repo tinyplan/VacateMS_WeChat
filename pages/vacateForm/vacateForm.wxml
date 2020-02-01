@@ -1,0 +1,127 @@
+<!--pages/vacateForm/vacateForm.wxml-->
+<cu-custom bgColor="bg-gradual-blue">
+    <view slot="content">请假申请</view>
+</cu-custom>
+<form bindsubmit="formSubmit">
+    <view class="cu-form-group">
+        <view class="title">申请人姓名</view>
+        <input placeholder="请输入申请人姓名" name="stuName" value="{{name}}"></input>
+        <text class="cuIcon-my text-orange"></text>
+    </view>
+    <view class="cu-form-group margin-top">
+        <view class="title">开始时间</view>
+        <picker mode="date" value="{{startDate}}" start="{{currentDate}}" end="2020-09-01" bindchange="startDateChange">
+            <view class="picker">
+                {{startDate == ''?'请输入开始时间':startDate}}
+            </view>
+        </picker>
+        <text class="cuIcon-calendar text-orange"></text>
+    </view>
+    <view class="cu-form-group">
+        <view class="title">结束时间</view>
+        <picker mode="date" value="{{endDate}}" start="{{startDate}}" end="2020-09-01" bindchange="endDateChange">
+            <view class="picker">
+                {{endDate == ''?'请输入结束时间':endDate}}
+            </view>
+        </picker>
+        <text class="cuIcon-calendar text-orange"></text>
+    </view>
+    <view class="cu-form-group margin-top">
+        <view class="title">请假类型</view>
+        <picker value="{{index}}" range="{{picker}}" bindchange="PickerChange">
+            <view class="picker">
+                {{index?picker[index]:'请选择请假类型'}}
+            </view>
+        </picker>
+        <text class="cuIcon-activity text-orange"></text>
+    </view>
+    <view class="cu-form-group align-start" wx:if="{{showResult}}">
+        <view class="title">请假理由</view>
+        <textarea maxlength="-1" placeholder="说明请假原因" name="result" value="{{result}}"></textarea>
+    </view>
+    <view class="cu-form-group margin-top">
+        <view class="title">影响课程列表</view>
+        <view class="action">
+            <button class="cu-btn bg-olive shadow" bindtap="showDialog">
+                选择
+            </button>
+        </view>
+    </view>
+    <!--选择课程清单-->
+    <view class="cu-modal {{showDialog?'show':''}}">
+        <view class="cu-dialog">
+            <view class="cu-bar bg-white justify-end">
+                <view class="content">请选择影响课程</view>
+                <view class="action" bindtap="hideDialog">
+                    <text class="cuIcon-close text-red"></text>
+                </view>
+            </view>
+            <checkbox-group class="block" bindchange="checkboxChange">
+                <view class="cu-list menu text-left">
+                    <view class="cu-item" wx:for="{{courseList}}" wx:key>
+                        <label class="flex justify-between align-center flex-sub">
+                            <view class="flex-sub">{{item.name}}</view>
+                            <checkbox class="round" value="{{index}}"></checkbox>
+                        </label>
+                    </view>
+                </view>
+            </checkbox-group>
+            <view class="cu-bar bg-white">
+                <view class="action margin-0 flex-sub solid-left" bindtap="cancel">取消</view>
+                <view class="action margin-0 flex-sub text-green solid-left" bindtap="confirm">确定</view>
+            </view>
+        </view>
+    </view>
+    <!-- 显示选择的课程清单 -->
+    <view class="cu-list menu sm-border card-menu margin-top" wx:if="{{showList}}">
+        <view class="cu-item" wx:for="{{selectedList}}" wx:key>
+            <view class="content">
+                <text class="cuIcon-send text-blue"></text>
+                <text class="text-grey">{{item.name}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="margin-top bg-gray">
+        <button class="cu-btn bg-blue round shadow margin-tb-sm block" form-type="submit">
+            提交申请
+        </button>
+    </view>
+    <!-- 显示回复结果 -->
+    <view class="cu-modal {{showResponse?'show':''}}">
+        <view class="cu-dialog">
+            <view class="cu-bar bg-white justify-end">
+                <view class="content">{{response.status == 'success'?'成功':'错误'}}</view>
+                <view class="action" bindtap="hideResponse">
+                    <text class="cuIcon-close text-red"></text>
+                </view>
+            </view>
+            <view class="padding-xl">
+                {{response.message == null?'服务器未响应':response.message}}
+            </view>
+            <view class="cu-bar bg-white">
+                <view class="action margin-0 flex-sub text-green solid-left" bindtap="hideResponse">
+                    确定
+                </view>
+            </view>
+        </view>
+    </view>
+    <!-- 权限窗口 -->
+    <view class="cu-modal {{showIdentity?'show':''}}">
+        <view class="cu-dialog">
+            <view class="cu-bar bg-white justify-end">
+                <view class="content">权限认证失败</view>
+                <view class="action" bindtap="{{flag?'jump2Login':'hideIntentity'}}">
+                    <text class="cuIcon-close text-red"></text>
+                </view>
+            </view>
+            <view class="padding-xl">
+                <text>{{idtentityMessage}}</text>
+            </view>
+            <view class="cu-bar bg-white">
+                <view class="action margin-0 flex-sub text-green solid-left" bindtap="{{flag?'jump2Login':'hideIntentity'}}">
+                    确定
+                </view>
+            </view>
+        </view>
+    </view>
+</form>

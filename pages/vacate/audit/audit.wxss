@@ -1,0 +1,4 @@
+/* pages/vacate/audit/audit.wxss */
+.border-bottom{
+    border-bottom: 1rpx solid #eee;
+}

@@ -1,0 +1,85 @@
+<!--pages/vacate/info/info.wxml-->
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+    <view slot="backText">返回</view>
+    <view slot="content">消息</view>
+</cu-custom>
+<view class="cu-bar bg-white solid-bottom">
+    <view class="action">
+        <text class="cuIcon-title text-orange"></text> 审批状态
+    </view>
+</view>
+<!-- 审批状态 -->
+<view class="bg-white padding margin-top-xs">
+    <view class="cu-steps steps-arrow">
+        <view class="cu-item {{index+1<step?'text-green':(index+1>step?'':(status<0?'text-red':(status>0?'text-green':'text-yellow')))}}" wx:for="{{stepList}}" wx:key>
+            <text class="cuIcon-{{index+1<step?iconList[2]:(index+1>step?'title':(status<0?iconList[0]:(status>0?iconList[2]:iconList[1])))}}"></text> {{item}}
+        </view>
+    </view>
+</view>
+<view class="cu-list menu sm-border card-menu margin-top bg-white light">
+    <view class="cu-item flex solid-bottom justify-between border-bottom">
+        <text class="text-black text-bold text-lg">编号</text>
+        <text class="text-gray text-bold text-sub">{{vacateData.vacate.vacate_id}}</text>
+    </view>
+    <view class="cu-item flex solid-bottom justify-between border-bottom">
+        <text class="text-black text-bold text-lg">申请人姓名</text>
+        <text class="text-gray text-bold text-sub">{{vacateData.name}}</text>
+    </view>
+    <view class="cu-item flex solid-bottom justify-between border-bottom">
+        <text class="text-black text-bold text-lg">申请类型</text>
+        <text class="text-gray text-bold text-sub">{{vacateData.vacate.type}}</text>
+    </view>
+    <view class="cu-item flex solid-bottom justify-between border-bottom">
+        <text class="text-black text-bold text-lg">申请时间</text>
+        <text class="text-gray text-bold text-sub">
+            {{vacateData.vacate.start_time+' ~ '+vacateData.vacate.end_time}}
+        </text>
+    </view>
+    <view class="cu-item flex solid-bottom justify-between border-bottom">
+        <text class="text-black text-bold text-lg">申请天数</text>
+        <text class="text-gray text-bold text-sub">{{vacateData.vacate.period}}</text>
+    </view>
+    <view class="cu-item flex solid-bottom justify-between border-bottom" 
+        wx:if="{{vacateData.vacate.type == '其它'}}">
+        <text class="text-black text-bold text-lg">原因描述</text>
+        <text class="text-gray text-bold text-sub">{{vacateData.vacate.result}}</text>
+    </view>
+    <view class="cu-item flex solid-bottom justify-between border-bottom">
+        <text class="text-black text-bold text-lg">申请学期</text>
+        <text class="text-gray text-bold text-sub">{{vacateData.vacate.term}}</text>
+    </view>
+    <view class="cu-item flex solid-bottom justify-between border-bottom">
+        <text class="text-black text-bold text-lg">提交时间</text>
+        <text class="text-gray text-bold text-sub">{{vacateData.vacate.submit_time}}</text>
+    </view>
+</view>
+<view class="cu-list menu sm-border card-menu margin-top bg-white light">
+    <view class="cu-item flex solid-bottom justify-between border-bottom">
+        <text class="text-black text-bold text-lg">影响课程</text>
+        <text class="cuIcon-triangledownfill text-gray text-bold text-sub"></text>
+    </view>
+    <view class="cu-item flex solid-bottom justify-center border-bottom" wx:for="{{courseList}}" 
+        wx:key>
+        <text></text>
+        <text class="text-gray text-bold text-sub">{{item.name}}</text>
+        <text></text>
+    </view>
+</view>
+<view class="cu-list menu sm-border card-menu margin-top bg-white light" wx:if="{{showButton && identity != 0 && identity != 3}}">
+    <view class="cu-form-group flex solid-bottom padding justify-center">
+        <view class="cu-btn bg-red lg shadow padding-sm margin-xs radius" data-upStatus="{{-1}}"                    bindtap="buttonClick">
+            驳回
+        </view>
+        <view class="cu-btn bg-green lg shadow padding-sm margin-xs radius" data-upStatus="{{1}}"                   bindtap="buttonClick">
+            批准
+        </view>
+    </view>
+</view>
+<view class="cu-list menu sm-border card-menu margin-top bg-white light" 
+    wx:if="{{identity == 0 && step == 1 && status == 0}}">
+    <view class="cu-form-group flex solid-bottom padding justify-center">
+        <button class="cu-btn bg-red lg shadow padding-sm margin-xs radius" bindtap="returnBack">
+            撤回
+        </button>
+    </view>
+</view>
